@@ -7,6 +7,10 @@ description: "How to flash a BeagleBone AI-64 to prepare it for viam-server inst
 aliases:
     - "/installation/beaglebone-install/"
     - "/installation/prepare/beaglebone-install/"
+menu:
+  main:
+    identifier: "webapps-tasklist-working"
+    parent: "webapps-tasklist"
 # SMEs: Shawn, Matt Dannenberg, and Rand
 ---
 
