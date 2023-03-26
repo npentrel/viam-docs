@@ -98,3 +98,72 @@ window.markmap = {
         observer.observe(main);
     }
 </script>
+
+<!-- script for menu toggles -->
+<script>
+    // var siteMenuToggle = query('.site-menu-toggle');
+    // if (siteMenuToggle) {
+    // siteMenuToggle.addEventListener('click', function () {
+    //     document.body.classList.toggle('site-menu-open');
+    // });
+    // }
+
+    var siteMenuSubmenus = document.getElementsByClassName('td-sidebar-nav__section-title td-sidebar-nav__section with-child');
+
+    function submenuToggle(menu, toggle) {
+        console.log(menu);
+        console.log(toggle);
+
+        console.log("toggle");
+        console.log(toggle);
+        let open = false;
+        if (toggle.children[0].className === "fas fa-chevron-right") {
+            open = true;
+        }
+
+        // toggle displayed icon
+        if (open) {
+            toggle.children[0].className = "fas fa-chevron-down"
+        } else {
+            toggle.children[0].className = "fas fa-chevron-right"
+        }
+
+        // add or remove collapse class to children
+        let immediateChildren = menu.querySelector('ul').children;
+
+        if (open) {
+            for (let c of immediateChildren) {
+                c.classList.remove("collapse");
+            }
+        } else {
+            for (let c of immediateChildren) {
+                c.classList.add("collapse");
+            }
+        }
+
+    }
+
+    function makeToggleBtn(ul) {
+        // var span = document.createElement('span');
+        // span.className = 'submenu-toggle';// glyphicon glyphicon-plus';
+        ul.a.span.addEventListener('click', function () {
+            setSubmenuClasses(ul);
+        });
+
+        // ul.appendChild(span, ul);
+        return span;
+    }
+
+    for (let menu of siteMenuSubmenus) {
+        console.log(menu);
+        // add event listener on menu toggle
+        let toggle = menu.querySelector("span").querySelector(".submenu-toggle");
+        console.log(toggle);
+        if (toggle) {
+            toggle.addEventListener('click', function () {
+                submenuToggle(menu, toggle);
+            });
+        }
+    };
+
+</script>
