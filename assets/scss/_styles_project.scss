@@ -824,3 +824,48 @@ footer small {
   .alignright { display: block; margin-left: auto; margin-right: auto; }
   .alignleft { display: block; margin-left: auto; margin-right: auto; }
 }
+
+.screenshot {
+  border: 1px solid #d1d5db;
+  position: relative;
+
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+
+  /* Top left text */
+  .top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+  }
+
+  /* Top right text */
+  .top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+  }
+
+  /* Bottom right text */
+  .bottom-right {
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    border-left: 1px solid #d1d5db;
+    border-top: 1px solid #d1d5db;
+    background-color: white;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+  }
+
+  /* Centered text */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+}

@@ -71,7 +71,10 @@ Navigate to the **config** tab on your robot's page, and click on the **Services
 
 Add a service with type `slam`, model `viam:slam:cartographer`, and a name of your choice:
 
-![adding cartographer slam service](../img/run_slam/add-cartographer-service-ui.png)
+<div class="screenshot">
+  <img src="../img/run_slam/add-cartographer-service-ui.png" alt="adding cartographer slam service" style="width:100%;">
+  <div class="bottom-right"><i class="fa fa-camera"></i> Screenshot</div>
+</div>
 
 Paste the following into the **Attributes** field of your new service:
 
