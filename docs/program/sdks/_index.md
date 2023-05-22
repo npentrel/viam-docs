@@ -8,8 +8,8 @@ icon: "/services/img/icons/sdk.svg"
 tags: ["client", "sdk"]
 no_list: true
 aliases:
-  - "product-overviews/sdk-as-client"
-  - "program/sdk-as-client"
+  - "/product-overviews/sdk-as-client"
+  - "/program/sdk-as-client"
 ---
 
 Viam offers software development kits (SDKs) in popular languages which
