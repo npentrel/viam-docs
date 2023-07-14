@@ -5,10 +5,10 @@ weight: 55
 type: "docs"
 tags: ["sdk", "extending viam", "components", "base", "python", "modular resources"]
 description: "Integrate a custom base component with the Viam Python SDK."
-webmSrc: "/tutorials/img/custom-base-dog/base-control-dog.webm"
-mp4Src: "/tutorials/img/custom-base-dog/base-control-dog.mp4"
+webmSrc: "/tutorials/custom-base-dog/base-control-dog.webm"
+mp4Src: "/tutorials/custom-base-dog/base-control-dog.mp4"
 videoAlt: "A quadrupedal robot comprised of small servos, black laser cut acrylic, and with ultrasonic sensors for eyes, walks forward, backward, and turns from side to side on a desk. Next to it is a laptop with the robot's Control tab on the Viam app open in a browser window."
-images: ["/tutorials/img/custom-base-dog/base-control-dog.gif"]
+images: ["/tutorials/custom-base-dog/base-control-dog.gif"]
 aliases:
     - /tutorials/custom-base-dog/
 authors: [ "Jessamy Taylor" ]
@@ -27,7 +27,7 @@ Viam natively supports a wheeled base model, but if you have a quadruped or othe
 This tutorial demonstrates how to add a custom base using [this robot dog kit and its open source code](https://github.com/Freenove/Freenove_Robot_Dog_Kit_for_Raspberry_Pi) as an example.
 
 <div class="alignleft">
-  {{<gif webm_src="/tutorials/img/custom-base-dog/base-control-dog.webm" mp4_src="/tutorials/img/custom-base-dog/base-control-dog.mp4" alt="A quadrupedal robot comprised of small servos, black laser cut acrylic, and with ultrasonic sensors for eyes, walks forward, backward, and turns from side to side on a desk. Next to it is a laptop with the robot's Control tab on the Viam app open in a browser window." max-width="400px">}}
+  {{<gif webm_src="/tutorials/custom-base-dog/base-control-dog.webm" mp4_src="/tutorials/custom-base-dog/base-control-dog.mp4" alt="A quadrupedal robot comprised of small servos, black laser cut acrylic, and with ultrasonic sensors for eyes, walks forward, backward, and turns from side to side on a desk. Next to it is a laptop with the robot's Control tab on the Viam app open in a browser window." max-width="400px">}}
 </div>
 
 By the end of the tutorial, you will be able to drive this dog around using the Viam base methods: `MoveStraight`, `Spin`, `SetPower`, `SetVelocity`, and `Stop`.
@@ -258,7 +258,7 @@ The code below shows what the top of your class definition should look like.
 ```python {class="line-numbers linkable-line-numbers"}
 class robotdog(Base, Reconfigurable):
     MODEL: ClassVar[Model] = Model(ModelFamily("viamlabs", "base"), "robotdog")
-    
+
     # Class parameters
     ip_address: str
     port: int

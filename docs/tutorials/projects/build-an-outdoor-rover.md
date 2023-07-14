@@ -5,8 +5,8 @@ weight: 60
 type: "docs"
 tags: ["base", "outdoor", "solar", "rover"]
 description: "Build and control an affordable, functional outdoor rover (choose 3)."
-image: "/tutorials/img/outdoor-rover-boxbot/completed-rover.jpg"
-images: ["/tutorials/img/outdoor-rover-boxbot/completed-rover.jpg"]
+image: "/tutorials/outdoor-rover-boxbot/completed-rover.jpg"
+images: ["/tutorials/outdoor-rover-boxbot/completed-rover.jpg"]
 aliases:
   /tutorials/build-an-outdoor-rover/
 imageAlt: "Rover with mounted solar panel."

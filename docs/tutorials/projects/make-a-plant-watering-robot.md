@@ -5,9 +5,9 @@ weight: 50
 type: "docs"
 description: "Create a plant watering robot with a Raspberry Pi."
 tags: ["raspberry pi", "app", "board", "motor"]
-image: "/tutorials/img/plant-watering-pi/preview.png"
+image: "/tutorials/plant-watering-pi/preview.png"
 imageAlt: "Picture of the plant watering robot"
-images: ["/tutorials/img/plant-watering-pi/preview.png"]
+images: ["/tutorials/plant-watering-pi/preview.png"]
 authors: [ "Sierra Guequierre" ]
 languages: [ "python" ]
 viamresources: [ "board", "motor", "sensor" ]
@@ -134,7 +134,7 @@ You can either bend or soldier the jumper wire here to make the connection betwe
 
 ## Program Your Plant Watering Robot
 
-{{<gif webm_src="/tutorials/img/plant-watering-pi/plant-watering-video.webm" mp4_src="/tutorials/img/plant-watering-pi/plant-watering-video.mp4" alt="The plant watering robot on a white desk. Camera goes up to the watering tube and pulls it out, showing the drip.">}}
+{{<gif webm_src="/tutorials/plant-watering-pi/plant-watering-video.webm" mp4_src="/tutorials/plant-watering-pi/plant-watering-video.mp4" alt="The plant watering robot on a white desk. Camera goes up to the watering tube and pulls it out, showing the drip.">}}
 
 ### Enable SPI on your Pi
 

@@ -4,10 +4,10 @@ linkTitle: "Security Guardian"
 weight: 50
 type: "docs"
 description: "Make a functional guardian with a servo motor, some LEDs, a camera, and the ML Model and Vision Service to detect people and pets."
-webmSrc: "/tutorials/img/guardian/preview.webm"
-mp4Src: "/tutorials/img/guardian/preview.mp4"
+webmSrc: "/tutorials/guardian/preview.webm"
+mp4Src: "/tutorials/guardian/preview.mp4"
 videoAlt: "A guardian detecting a person or pet."
-images: ["/tutorials/img/guardian/preview.gif"]
+images: ["/tutorials/guardian/preview.gif"]
 tags: ["camera", "vision", "detector", "python"]
 no_list: true
 authors: [ "Naomi Pentrel" ]
@@ -25,7 +25,7 @@ Luckily, I am not the first one to have the idea to build a guardian and there w
 In this tutorial, I will walk you through the steps to build your own functional guardian with a [servo](/components/servo/), a [camera](/components/camera/), some LEDs and the [ML Model service](/services/ml/) and [Vision Service](/services/vision/).
 Here's a video of the finished guardian detecting me:
 
-{{<video webm_src="/tutorials/img/guardian/guardian-detection.webm" mp4_src="/tutorials/img/guardian/guardian-detection.mp4" poster="/tutorials/img/guardian/guardian-detection.jpg" alt="Guardian robot detects person and rotates head to follow them around">}}
+{{<video webm_src="/tutorials/guardian/guardian-detection.webm" mp4_src="/tutorials/guardian/guardian-detection.mp4" poster="/tutorials/guardian/guardian-detection.jpg" alt="Guardian robot detects person and rotates head to follow them around">}}
 
 ## Hardware requirements
 
@@ -76,12 +76,12 @@ You will use the following software in this tutorial:
 
 You can view a timelapse of the robot assembly here:
 
-{{<video webm_src="/tutorials/img/guardian/timelapse.webm" mp4_src="/tutorials/img/guardian/timelapse.mp4" poster="/tutorials/img/guardian/timelapse.jpg" alt="Timelapse of guardian assembly">}}
+{{<video webm_src="/tutorials/guardian/timelapse.webm" mp4_src="/tutorials/guardian/timelapse.mp4" poster="/tutorials/guardian/timelapse.jpg" alt="Timelapse of guardian assembly">}}
 
 ### Assemble for testing
 
 <div class="td-max-width-on-larger-screens">
-  <img src="/tutorials/img/guardian/head.png" class="alignright" alt="Head with camera attachment" style="max-width: 200px" />
+  <img src="/tutorials/guardian/head.png" class="alignright" alt="Head with camera attachment" style="max-width: 200px" />
 </div>
 
 To assemble the guardian, start with the head and use four M2 screws to screw the camera with attached ribbon cable to the front half of the head.
@@ -101,7 +101,7 @@ To make attaching the paper easier, use a credit card or a small screwdriver.
 
 Then attach the head to the servo.
 
-![A Raspberry Pi connected to a FS90R servo. The yellow PWM wire is attached to pin twelve on the raspberry pi. The red five-volt wire is attached to pin two. The black ground wire is attached to pin eight](/tutorials/img/single-component-tutorials-servo-mousemover/servo-wiring-diagram.png)
+![A Raspberry Pi connected to a FS90R servo. The yellow PWM wire is attached to pin twelve on the raspberry pi. The red five-volt wire is attached to pin two. The black ground wire is attached to pin eight](/tutorials/single-component-tutorials-servo-mousemover/servo-wiring-diagram.png)
 
 Next, get the three 10mm RGB LEDs ready.
 Attach the common cathode of each LED to a [ground pin](https://pinout.xyz/pinout/ground) on your Raspberry Pi.
@@ -523,7 +523,7 @@ python3 main.py
 
 Your Guardian lights up blue:
 
-{{<gif webm_src="/tutorials/img/guardian/light-up.webm" mp4_src="/tutorials/img/guardian/light-up.mp4" alt="Guardian lights up blue" max-width="300px">}}
+{{<gif webm_src="/tutorials/guardian/light-up.webm" mp4_src="/tutorials/guardian/light-up.mp4" alt="Guardian lights up blue" max-width="300px">}}
 
 ### Detections
 
@@ -670,7 +670,7 @@ python3 main.py
 
 If everything works, your guardian should now start to idle and when it detects humans or dogs or cats turn red, start music, and focus on the detected being:
 
-{{<video webm_src="/tutorials/img/guardian/guardian-finished.webm" mp4_src="/tutorials/img/guardian/guardian-finished.mp4" poster="/tutorials/img/guardian/guardian-finished.jpg" alt="FInished guardian">}}
+{{<video webm_src="/tutorials/guardian/guardian-finished.webm" mp4_src="/tutorials/guardian/guardian-finished.mp4" poster="/tutorials/guardian/guardian-finished.jpg" alt="FInished guardian">}}
 
 ## Run the program automatically
 
@@ -730,7 +730,7 @@ Or simply use to greet you when you get back to your desk.
 
 Here is a video of how I set up my guardian to follow my dog around my living room:
 
-{{<video webm_src="/tutorials/img/guardian/ernieandtheguardian.webm" mp4_src="/tutorials/img/guardian/ernieandtheguardian.mp4" poster="/tutorials/img/guardian/ernieandtheguardian.jpg" alt="Guardian robot rotates head to follow dog around a room">}}
+{{<video webm_src="/tutorials/guardian/ernieandtheguardian.webm" mp4_src="/tutorials/guardian/ernieandtheguardian.mp4" poster="/tutorials/guardian/ernieandtheguardian.jpg" alt="Guardian robot rotates head to follow dog around a room">}}
 
 Of course, you're free to adapt the code to make it do something else, add more LEDs, or even [train your own custom model](/manage/ml/train-model/) to use.
 

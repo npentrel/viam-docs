@@ -4,10 +4,10 @@ linkTitle: "Dart Launcher Robot"
 weight: 160
 type: "docs"
 description: "Build a foam dart launcher with a wheeled rover and a Raspberry Pi."
-webmSrc: "/tutorials/videos/foam-dart.webm"
-mp4Src: "/tutorials/videos/foam-dart.mp4"
+webmSrc: "/tutorials/foam-dart-launcher/foam-dart.webm"
+mp4Src: "/tutorials/foam-dart-launcher/foam-dart.mp4"
 videoAlt: "Robot launching a dart."
-images: ["/tutorials/videos/foam-dart.gif"]
+images: ["/tutorials/foam-dart-launcher/foam-dart.gif"]
 aliases:
     - /tutorials/foam-dart-launcher
 tags: ["base", "motor", "camera", "raspberry pi"]
@@ -28,7 +28,7 @@ This robot will be able to move around and launch foam darts.
 This project is a great place to start if you are new to building robots, have a love for Nerf toys, an occasion to target something and launch a dart at it, or if you just want to troll your friends.
 Don’t forget to be careful and have fun!
 
-{{<gif webm_src="/tutorials/img/foam-dart-launcher/init-image-nerf-robot.webm" mp4_src="/tutorials/img/foam-dart-launcher/init-image-nerf-robot.mp4" alt="Robot launching a dart from a foam dart launcher taped to the robot." max-width="400px">}}
+{{<gif webm_src="/tutorials/foam-dart-launcher/init-image-nerf-robot.webm" mp4_src="/tutorials/foam-dart-launcher/init-image-nerf-robot.mp4" alt="Robot launching a dart from a foam dart launcher taped to the robot." max-width="400px">}}
 
 ## What You’ll Need for This Tutorial
 

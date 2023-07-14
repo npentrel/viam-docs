@@ -4,10 +4,10 @@ linkTitle: "Drive a SCUTTLE with a Gamepad"
 weight: 20
 type: "docs"
 description: "Drive a SCUTTLE Robot with a Bluetooth gamepad from the Viam app."
-webmSrc: "/tutorials/videos/scuttle-gamepad-preview.webm"
-mp4Src: "/tutorials/videos/scuttle-gamepad-preview.mp4"
+webmSrc: "/tutorials/scuttle/scuttle-gamepad-preview.webm"
+mp4Src: "/tutorials/scuttle/scuttle-gamepad-preview.mp4"
 videoAlt: "Drive a SCUTTLE Robot with a Bluetooth gamepad."
-images: ["/tutorials/videos/scuttle-gamepad-preview.gif"]
+images: ["/tutorials/scuttle/scuttle-gamepad-preview.gif"]
 aliases:
     - "/tutorials/scuttle-gamepad/"
     - "/tutorials/scuttlebot/scuttle-gamepad/"

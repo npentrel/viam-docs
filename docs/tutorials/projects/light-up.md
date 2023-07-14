@@ -4,9 +4,9 @@ linkTitle: "Turn on Lights with Object Detection"
 weight: 49
 type: "docs"
 description: "How to turn a light on when your webcam sees a person."
-webmSrc: "/tutorials/img/light-up/light-up.webm"
-mp4Src: "/tutorials/img/light-up/light-up.mp4"
-images: ["/tutorials/img/light-up/light-up.gif"]
+webmSrc: "/tutorials/light-up/light-up.webm"
+mp4Src: "/tutorials/light-up/light-up.mp4"
+images: ["/tutorials/light-up/light-up.gif"]
 videoAlt: "A person sitting at a desk with a computer and light bulb set up in front of her. As she leaves the light turns off, and as she enters the frame, the light turns back on."
 tags: ["camera", "vision", "detector", "python"]
 authors: [ "Hazal Mestci" ]
@@ -23,7 +23,7 @@ You can turn it into a night light for reading books, a security robot that aler
 
 This project is a great place to start if you are new to building robots because the only hardware it requires in addition to your computer is a [smart plug](https://www.kasasmart.com/us/products/smart-plugs/kasa-smart-wifi-plug-mini) or smart bulb.
 
-{{<gif webm_src="/tutorials/img/light-up/light-up.webm" mp4_src="/tutorials/img/light-up/light-up.mp4" alt="The project working: a person sitting at a desk with a computer and light bulb set up in front of her. As she leaves the light turns off, and as she enters the frame, the light turns back on.">}}
+{{<gif webm_src="/tutorials/light-up/light-up.webm" mp4_src="/tutorials/light-up/light-up.mp4" alt="The project working: a person sitting at a desk with a computer and light bulb set up in front of her. As she leaves the light turns off, and as she enters the frame, the light turns back on.">}}
 
 ## Hardware requirements
 
@@ -77,7 +77,7 @@ Click **Save Config** in the bottom left corner of the screen.
 
 Navigate to the **Control** tab where you can see your camera working.
 
-{{< gif webm_src="/tutorials/img/light-up/control-panel.webm" mp4_src="/tutorials/img/light-up/control-panel.mp4" alt= "Opening the camera panel on the control tab, toggling the video feed on, and watching as a person wearing headphones waves at the camera." >}}
+{{< gif webm_src="/tutorials/light-up/control-panel.webm" mp4_src="/tutorials/light-up/control-panel.mp4" alt= "Opening the camera panel on the control tab, toggling the video feed on, and watching as a person wearing headphones waves at the camera." >}}
 
 ## Configure your services
 

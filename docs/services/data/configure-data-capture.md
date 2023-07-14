@@ -25,7 +25,7 @@ To capture data from one or more robots, you must first add the [Data Management
    {{< /alert >}}
 5. Click **Save Config**.
 
-![data capture configuration](../../../tutorials/img/data-management/data-manager.png)
+{{<imgproc src="/tutorials/data-management/data-manager.png" resize="700x" declaredimensions=true alt="data capture configuration">}}
 
 {{%expand "Click to view the JSON configuration for the Data Management Service" %}}
 

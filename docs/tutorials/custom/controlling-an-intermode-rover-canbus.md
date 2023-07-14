@@ -5,9 +5,9 @@ weight: 60
 type: "docs"
 tags: ["modular resources", "extending viam", "components", "rover", "base", "CAN bus", "Intermode"]
 description: "Integrate an Intermode rover as a modular-resource-based component with CAN bus."
-image: "/tutorials/img/intermode/rover_outside.png"
+image: "/tutorials/intermode/rover_outside.png"
 imageAlt: "Intermode rover pictured outdoors."
-images: ["/tutorials/img/intermode/rover_outside.png"]
+images: ["/tutorials/intermode/rover_outside.png"]
 authors: [ "Matt Vella" ]
 languages: [ "go" ]
 viamresources: [ "base", "custom" ]

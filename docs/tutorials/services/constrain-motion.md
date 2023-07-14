@@ -4,9 +4,9 @@ linkTitle: "Add Motion Constraints"
 weight: 25
 type: "docs"
 description: "Use constraints and transforms with the Motion Service."
-webmSrc: "/tutorials/videos/motion_constraints.webm"
-mp4Src: "/tutorials/videos/motion_constraints.mp4"
-images: ["/tutorials/videos/motion_constraints.gif"]
+webmSrc: "/tutorials/motion/motion_constraints.webm"
+mp4Src: "/tutorials/motion/motion_constraints.mp4"
+images: ["/tutorials/motion/motion_constraints.gif"]
 videoAlt: "An arm moving a cup from one side of a tissue box to the other, across a table. The cup stays upright."
 tags: ["arm", "gripper", "motion", "services"]
 authors: [ "Jessamy Taylor" ]
@@ -23,7 +23,7 @@ Before running any code, ensure your robotic arm has enough space and that there
 Also pay attention to your surroundings, double-check your code for correctness, and make sure anyone nearby is aware and alert before issuing commands to your robot.
 {{< /alert >}}
 
-{{<gif webm_src="/tutorials/videos/motion_constraints.webm" mp4_src="/tutorials/videos/motion_constraints.mp4" alt="An arm moving a cup from one side of a tissue box to the other, across a table. The cup stays upright." class="alignright" max-width="250px">}}
+{{<gif webm_src="/tutorials/motion/motion_constraints.webm" mp4_src="/tutorials/motion/motion_constraints.mp4" alt="An arm moving a cup from one side of a tissue box to the other, across a table. The cup stays upright." class="alignright" max-width="250px">}}
 
 Say you want your robot to pass you a cup of tea, but you don't want it to spill the water or bump into other objects on the table.
 

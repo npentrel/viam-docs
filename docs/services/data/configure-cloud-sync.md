@@ -15,7 +15,7 @@ Click **Save Config** at the bottom of the window.
 
 Now the data that you capture will sync automatically with the Viam app in the cloud.
 
-![data capture configuration](../../../tutorials/img/data-management/data-manager.png)
+{{<imgproc src="/tutorials/data-management/data-manager.png" resize="700x" declaredimensions=true alt="data capture configuration">}}
 
 By default, the Data Management Service syncs data to Viam's cloud every 0.1 minutes, that is every 6 seconds.
 To change the sync interval, specify an interval in minutes in the interval field.

@@ -4,9 +4,9 @@ linkTitle: "Drive a Yahboom Rover with a Gamepad"
 weight: 50
 type: "docs"
 description: "Drive a Yahboom 4WD Rover with a bluetooth gamepad from the Viam app."
-image: "/tutorials/img/yahboom-rover/bluetoothpair-connect.png"
+image: "/tutorials/yahboom-rover/bluetoothpair-connect.png"
 imageAlt: "A Pi terminal showing the bluetoothctl commands and their outputs."
-images: ["/tutorials/img/yahboom-rover/bluetoothpair-connect.png"]
+images: ["/tutorials/yahboom-rover/bluetoothpair-connect.png"]
 aliases:
     - /tutorials/yahboom-rover/
 tags: ["base", "gamepad", "yahboom", "app", "rover"]
