@@ -26,13 +26,13 @@
             {{ partial "imgproc.html" (dict "src" ($imageOverwrite) "resize" "400x" "alt" (.Params.linkTitle) "style" "") }}
           </div>
         {{ else }}
-          {{ if .Params.image }}
+          {{ if .Params.images }}
             <div class="hover-card-img">
-              {{ $img := resources.GetMatch .Params.image }}
+              {{ $img := resources.GetMatch (index .Params.images 0) }}
               {{if $img }}
-                {{ partial "imgproc.html" (dict "src" (.Params.image) "resize" "400x" "alt" (.Params.imageAlt) "style" "") }}
+                {{ partial "imgproc.html" (dict "src" (index .Params.images 0) "resize" "400x" "alt" (.Params.imageAlt) "style" "") }}
               {{ else }}
-                {{ errorf "Couldn't get image %s" .Params.image }}
+                {{ errorf "Couldn't get image %s" (index .Params.images 0) }}
               {{ end }}
             </div>
           {{ end }}
@@ -54,6 +54,18 @@
         </div>
       </a>
       {{ end }}
+      <div {{ if (index .Params.images 0) }}class="small-hover-card-div"{{ end }}{{ if .Params.webmSrc }}class="small-hover-card-div"{{ end }}>
+        {{ if $customTitle }}
+          <div>{{ $customTitle }}</div>
+        {{ else }}
+          <div>{{ .LinkTitle }}</div>
+        {{ end }}
+        {{ if ne $class "small" }}
+        <p> {{ if $customDescription }} {{ $customDescription }} {{ else }} {{ .Description }} {{ end }} </p>
+        {{ end }}
+      </div>
+    </a>
+    {{ end }}
   {{ else }}
   {{ errorf "Card has a bad link: %s" $link }}
   {{ end }}
