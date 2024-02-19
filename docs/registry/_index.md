@@ -43,18 +43,17 @@ You can also [upload your own model to the registry](/ml/upload-model/).
 
 You can search the available ML models from the Viam registry here:
 
-<div id="searchbox"></div>
+<div id="searchbox-ml"></div>
 <p>
-<div id="searchstats"></div></p>
+<div id="searchstats-ml"></div></p>
 <div class="mr-model" id="">
   <div class="modellistheader">
-    <div class="type">API</div>
     <div class="name">Model</div>
     <div>Description</div>
   </div>
-<div id="hits" class="modellist">
+<div id="hits-ml" class="modellist">
 </div>
-<div id="pagination"></div>
+<div id="pagination-ml"></div>
 </div>
 
 To use an existing model from the registry, [deploy the ML model to your robot](/ml/deploy//#create-an-ml-model-service) and use a [Vision service](/ml/vision/) to make detections or classifications on-machine.

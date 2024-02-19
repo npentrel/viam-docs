@@ -1355,7 +1355,7 @@ ul.sectionlist > li:hover {
 
 // Pagination CSS start
 
-#pagination {
+#pagination, #pagination-ml {
   margin: 2rem auto;
 }
 
@@ -1501,6 +1501,10 @@ a.ais-Pagination-link:hover {
   max-width: 25%;
 }
 
+.modellist * .ais-Hits-list {
+  flex-direction: column;
+}
+
 .modellistheader {
   border-top: 1px solid #dee2e6;
   border-bottom: 1px solid #dee2e6;
@@ -1508,9 +1512,6 @@ a.ais-Pagination-link:hover {
 
 .modellistheader > div {
   font-weight: 600;
-}
-
-.modellistheader > .description, .modellist * .description {
 }
 
 #searchbox {

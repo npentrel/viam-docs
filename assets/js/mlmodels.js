@@ -1,8 +1,6 @@
-const { TypesenseInstantSearchAdapter, instantsearch } = window;
-
 const model = document.getElementsByClassName("mr-model")[0].id;
 console.log(model)
-const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
+const typesenseInstantsearchAdapter2 = new TypesenseInstantSearchAdapter({
   server: {
     apiKey: "Qhooem9HCRuFMVZPNQOhABAdEWJaSnlY", // Be sure to use an API key that only allows search operations
     nodes: [
@@ -18,51 +16,39 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   //  So you can pass any parameters supported by the search endpoint below.
   //  query_by is required.
   additionalSearchParameters: {
-    query_by: "model-id,description",
+    query_by: "model_id,description",
     sort_by: "total_organization_usage:desc,total_robot_usage:desc",
     infix: "always"
   },
 });
-const searchClient = typesenseInstantsearchAdapter.searchClient;
+const searchClientML = typesenseInstantsearchAdapter2.searchClient;
 
-const search = instantsearch({
+const searchML = instantsearch({
   indexName: "mlmodels",
-  searchClient,
+  searchClient: searchClientML,
 });
 
-let filters;
-let itemtemplate;
+let filtersML;
+let itemtemplateML;
 
-if (model == "") {
-  filters = {
-    hitsPerPage: 5,
-  };
-  itemtemplate = `
-  <div class="type"><p><code>{{#helpers.highlight}}{ "attribute": "model" }{{/helpers.highlight}}</code></p></div>
-  <div class="name"><p><a href="{{url}}"><code>{{#helpers.highlight}}{ "attribute": "model" }{{/helpers.highlight}}</code></a></p></div>
-  <div class="description">{{#helpers.highlight}}{ "attribute": "description" }{{/helpers.highlight}}</div>
-  `;
-} else {
-  filters = {
-    facetFilters: ["model: " + model],
-    hitsPerPage: 5,
-  };
-  itemtemplate = `
-  <div class="name"><p><a href="{{url}}"><code>{{#helpers.highlight}}{ "attribute": "model" }{{/helpers.highlight}}</code></a></p></div>
-  <div class="description">{{#helpers.highlight}}{ "attribute": "description" }{{/helpers.highlight}}</div>
-  `;
-}
+filtersML = {
+  hitsPerPage: 5,
+};
+itemtemplateML = `
+<div class="name"><p><a href="{{url}}"><code>{{#helpers.highlight}}{ "attribute": "model_id" }{{/helpers.highlight}}</code></a></p></div>
+<div class="description">{{#helpers.highlight}}{ "attribute": "description" }{{/helpers.highlight}}</div>
+`;
 
 
-search.addWidgets([
+searchML.addWidgets([
   instantsearch.widgets.hits({
-    container: "#hits",
+    container: "#hits-ml",
     templates: {
-      item: itemtemplate,
+      item: itemtemplateML,
     },
   }),
   instantsearch.widgets.searchBox({
-    container: '#searchbox',
+    container: '#searchbox-ml',
     placeholder: 'Search for a model...',
     poweredBy: false,
     wrapInput: true,
@@ -71,7 +57,7 @@ search.addWidgets([
     showLoadingIndicator: false
   }),
   instantsearch.widgets.stats({
-    container: '#searchstats',
+    container: '#searchstats-ml',
     templates: {
       text(data, { html }) {
         let results = '';
@@ -88,11 +74,11 @@ search.addWidgets([
       },
     },
   }),
-  instantsearch.widgets.configure(filters),
+  instantsearch.widgets.configure(filtersML),
   instantsearch.widgets.pagination({
-    container: "#pagination",
+    container: "#pagination-ml",
     scrollTo: false
   }),
 ]);
 
-search.start();
+searchML.start();
