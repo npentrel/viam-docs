@@ -16,7 +16,6 @@ Click on one of the following guides that provide solutions for common tasks and
 {{% card link="/use-cases/deploy-code/" class="fit-contain" %}}
 {{% card link="/use-cases/deploy-ml/" class="fit-contain" %}}
 {{% card link="/use-cases/navigate/" %}}
-{{% card link="/use-cases/control-motor/" %}}
 {{% card link="/use-cases/manage-fleet/" class="fit-contain" %}}
 {{< /cards >}}
 
