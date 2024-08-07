@@ -26,7 +26,7 @@ For information on provisioning many machines, see [Provisioning](/fleet/provisi
 
 {{< table >}}
 {{% tablestep link="/configure/" %}}
-{{<imgproc src="/use-cases/one-to-many/config.png" resize="700x" class="fill alignleft" style="max-width: 250px" declaredimensions=true alt="Configuration builder UI">}}
+{{<imgproc src="/use-cases/one-to-many/config.png" resize="700x" class="fill alignleft imgzoom" style="max-width: 250px" declaredimensions=true alt="Configuration builder UI">}}
 **1. Configure one machine**
 
 Start by configuring one of your machines.
@@ -35,14 +35,14 @@ In the [Viam app](https://app.viam.com), use the **CONFIGURE** tab to build a co
 
 {{% /tablestep %}}
 {{% tablestep %}}
-{{<imgproc src="/use-cases/one-to-many/raw-json.png" resize="700x" class="fill alignleft" style="max-width: 250px" declaredimensions=true alt="JSON subtab of the CONFIGURE tab">}}
+{{<imgproc src="/use-cases/one-to-many/raw-json.png" resize="700x" class="fill alignleft imgzoom" style="max-width: 250px" declaredimensions=true alt="JSON subtab of the CONFIGURE tab">}}
 **2. Copy the raw JSON**
 
 In your machine's **CONFIGURE** tab, switch to **JSON** and copy the raw JSON.
 
 {{% /tablestep %}}
 {{% tablestep link="/fleet/fragments/#create-a-fragment" %}}
-{{<imgproc src="/use-cases/one-to-many/new-fragment.png" resize="700x" class="fill alignleft" style="max-width: 250px" declaredimensions=true alt="app.viam.com/fragment interface">}}
+{{<imgproc src="/use-cases/one-to-many/new-fragment.png" resize="700x" class="fill alignleft imgzoom" style="max-width: 250px" declaredimensions=true alt="app.viam.com/fragment interface">}}
 **3. Create a fragment**
 
 Go to [app.viam.com/fragments](https://app.viam.com/fragments).
@@ -70,7 +70,7 @@ Now that you have a fragment, you can add it to as many machines as you'd like:
 
 {{< table >}}
 {{% tablestep link="/fleet/fragments/#add-a-fragment-to-a-machine" %}}
-{{<imgproc src="/get-started/try-viam/rover-resources/fragments/fragments_list.png" resize="700x" class="fill alignleft" style="max-width: 250px" declaredimensions=true alt="Add fragment">}}
+{{<imgproc src="/get-started/try-viam/rover-resources/fragments/fragments_list.png" resize="700x" class="fill alignleft imgzoom" style="max-width: 250px" declaredimensions=true alt="Add fragment">}}
 **1. Add the fragment to one machine**
 
 On your machine's **CONFIGURE** tab, click the **+** button and select **Insert fragment**.
