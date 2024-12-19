@@ -285,7 +285,7 @@ The dual GPS movement sensor calculates a compass heading from both GPS sensors,
 
 {{% changelog date="2024-03-01" color="added" title="Viam Agent" %}}
 
-You can now use the [Viam Agent](/fleet/provision/) to provision your machine or fleet of machines during deployment.
+You can now use the [Viam Agent](/manage/reference/agent/) to provision your machine or fleet of machines during deployment.
 The Viam Agent is a software provisioning manager that you can install on your machine which manages your `viam-server` installation, including installation and ongoing updates, as well as providing flexible deployment configuration options, such as pre-configured WiFi network credentials.
 
 {{% /changelog %}}

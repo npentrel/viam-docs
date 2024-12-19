@@ -24,7 +24,7 @@ You can run control code from anywhere; it does not necessarily have to be run o
 
 ## Backend SDKs
 
-Use the backend SDK to build business logic to control [components](/dev/reference/apis/#component-apis) and [services](/dev/reference/apis/#service-apis), as well as manage your [fleet](/dev/reference/apis/fleet/) and [data](/dev/reference/apis/data-client/), and [billing information](/dev/reference/apis/billing-client/), or [provision](/fleet/provision/) machines.
+Use the backend SDK to build business logic to control [components](/dev/reference/apis/#component-apis) and [services](/dev/reference/apis/#service-apis), as well as manage your [fleet](/dev/reference/apis/fleet/) and [data](/dev/reference/apis/data-client/), and [billing information](/dev/reference/apis/billing-client/), or [provision](/manage/fleet/provision/setup/) machines.
 With the backend SDKs you can also create custom {{< glossary_tooltip term_id="modular-resource" text="modular resources" >}}.
 
 {{< sectionlist-custom >}}
@@ -35,7 +35,7 @@ With the backend SDKs you can also create custom {{< glossary_tooltip term_id="m
 
 ## Frontend SDKs
 
-Use the frontend SDK to control your machine's [components](/dev/reference/apis/#component-apis), as well as manage your [data](/dev/reference/apis/data-client/) or [provision](/fleet/provision/) machines.
+Use the frontend SDK to control your machine's [components](/dev/reference/apis/#component-apis), as well as manage your [data](/dev/reference/apis/data-client/) or [provision](/manage/fleet/provision/setup/) machines.
 
 {{< sectionlist-custom >}}
 {{% sectionlist-custom-item link="/sdks/typescript/" %}}
@@ -43,7 +43,7 @@ Use the frontend SDK to control your machine's [components](/dev/reference/apis/
 
 ## Mobile SDK
 
-Use the mobile SDK to build iOS and Android apps to control your machine's [components](/dev/reference/apis/#component-apis), as well as manage your [fleet](/dev/reference/apis/fleet/) and [data](/dev/reference/apis/data-client/), or [provision](/fleet/provision/) machines.
+Use the mobile SDK to build iOS and Android apps to control your machine's [components](/dev/reference/apis/#component-apis), as well as manage your [fleet](/dev/reference/apis/fleet/) and [data](/dev/reference/apis/data-client/), or [provision](/manage/fleet/provision/setup/) machines.
 
 {{< sectionlist-custom >}}
 {{% sectionlist-custom-item link="/sdks/flutter/" %}}
@@ -52,6 +52,10 @@ Use the mobile SDK to build iOS and Android apps to control your machine's [comp
 <br>
 
 ## Installation
+
+{{< alert title="Note" color="note" >}}
+TODO: might need removing.
+{{< /alert >}}
 
 To install your preferred Viam SDK on your Linux or macOS development machine or [single-board computer](/components/board/), run one of the following commands in your terminal:
 
@@ -117,11 +121,7 @@ Navigate to the **CONNECT** tab on your machine's page on the [Viam app](https:/
 
 The sample code will show you how to authenticate and connect to a machine's `viam-server` instance, as well as some of the methods you can use on your configured components and services.
 
-For a full list of available API methods, see [Component APIs](/dev/reference/apis/#component-apis) and [Service APIs](/dev/reference/apis/#service-apis):
-
-{{< cards >}}
-{{% card link="/appendix/apis" customDescription="Usage examples for each API method." %}}
-{{< /cards >}}
+For a full list of available API methods, see [Component APIs](/dev/reference/apis/#component-apis) and [Service APIs](/dev/reference/apis/#service-apis).
 
 {{%expand "Click this to see example connection code" %}}
 {{< tabs >}}
@@ -317,189 +317,3 @@ You can run your program on any computer which:
 ### Apps with authentication
 
 If you need to build apps with custom login flows, [contact us](mailto:support@viam.com).
-
-## Run code
-
-After saving your [code sample](/sdks/#code-samples) and adding control logic with [Viam's SDKs](/dev/reference/apis/), run your program to control your Viam-connected machine.
-
-You can remotely control your machine from anywhere in the world.
-If your machine and your personal computer are both connected to the Internet, you can run code to control your machine remotely from your personal computer.
-
-{{<imgproc src="/build/program/remotely.png" resize="900x" declaredimensions=true alt="A client connecting remotely to a machine">}}
-
-This method is convenient for most use cases because your machine and your personal computer do not have to be connected to the same WAN/LAN to issue control commands.
-When you run code on one computer, creating a client [session](/dev/reference/apis/sessions/), the code running on that computer sends instructions to your machine's `viam-server` instance over the Internet.
-
-After editing your code to include your machine's [authentication credentials](#authentication), run a command to execute the program in the terminal of a computer with the appropriate programming language and [Viam SDK](/sdks/) installed:
-
-{{< tabs >}}
-{{% tab name="Python" %}}
-
-```sh {class="command-line" data-prompt="$"}
-python3 ~/myCode/myViamFile.py
-```
-
-{{% /tab %}}
-{{% tab name="Go" %}}
-
-```sh {class="command-line" data-prompt="$"}
-go run ~/myCode/myViamFile.go
-```
-
-{{% /tab %}}
-{{% tab name="TypeScript" %}}
-
-For an example, see [this execution demo.](https://github.com/viamrobotics/viam-typescript-sdk/tree/main/examples/vanilla)
-
-{{% /tab %}}
-{{% tab name="C++" %}}
-
-For information on running C++ code see [the instructions on GitHub](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md).
-
-{{% /tab %}}
-{{% tab name="Flutter" %}}
-
-```sh {class="command-line" data-prompt="$"}
-flutter run <DART_FILE>
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-As long as that computer is able to establish a network connection with the machine's computer, your control logic will be executed on the machine.
-
-If the internet becomes unavailable to the machine or to your computer but a local network is available, your code will continue to run as described in the next section:
-
-{{< tabs >}}
-{{% tab name="Deploy and run as a module" %}}
-
-You can wrap control code by [creating a module](/how-tos/create-module/).
-In wrapping your code into a module, you will be able to:
-
-- deploy it across one or more machines
-- use it in {{< glossary_tooltip term_id="fragment" text="fragments" >}}
-- version it
-
-You can package any files, code, or executable into a module.
-When you add a module to your machine's configuration, the entrypoint defined for the module is run which can start your code.
-
-If your control code augments what a component does, such as, for example, adding an overlay to a camera stream, you can create your own camera model inside your module and amend the API methods to have your custom functionality.
-For an example of this, see the [facial-detection module](https://github.com/viam-labs/facial-detection) which wraps its logic into a custom vision service.
-
-If your functionality does not conform to existing API types such as the motor or camera API, you can [use a generic API to wrap your code](https://docs.viam.com/how-tos/create-module/#choose-an-api-to-implement-in-your-model).
-
-For more information, see [How to create and deploy a new module](/how-tos/create-module/).
-
-{{% /tab %}}
-{{% tab name="Run on local network" %}}
-
-Your machines do not need to be connected to the Internet for you to be able to run code.
-As long as your machine is connected to the same LAN or WAN network as the device running the code, you can connect to it and run code.
-
-When you use the connection code sample from the [**CONNECT** tab](/sdks/#code-samples), that code establishes a [client session](/dev/reference/apis/sessions/) that automatically uses the [most efficient route](/sdks/connectivity/) to send commands to your machine.
-That means that when the device your code runs on is on the same network as your machine, even if internet is available, the connection will choose the most efficient route and connect over LAN or WAN.
-If you subsequently lose internet connectivity, but stay connected to LAN or WAN, the connection will thus remain.
-
-{{% /tab %}}
-{{% tab name="Run on-machine" %}}
-
-You can run control code directly on your machine.
-If you run [PID control loops](https://en.wikipedia.org/wiki/PID_controller) or your machines have intermittent or no network connectivity, you can ensure lags in communication do not interfere with the machine's performance by running the control code on the same board that is running `viam-server`.
-Running everything on one machine is also convenient if you have a machine (for example, an air quality sensor) that runs all the time, and you don't want to have to connect to it from a separate computer constantly.
-
-{{<imgproc src="/build/program/on-robot.png" resize="900x" declaredimensions=true alt="A client running on a machine">}}
-
-The script you run on-machine is the same as the script you run remotely or on a local network.
-When the connection code from the [**CONNECT** tab's **Code sample** page](/sdks/#code-samples) executes, it creates a [client session](/dev/reference/apis/sessions/) connected to your machine using the [most efficient route](/sdks/connectivity/).
-Because the code is running on the same machine as `viam-server`, the favored route for commands is automatically over localhost.
-
-Install the appropriate programming language and [Viam SDK](/sdks/) on your machine and run a command to execute the program in the terminal of that machine instead of from a separate computer:
-
-{{< tabs >}}
-{{% tab name="Python" %}}
-
-```sh {class="command-line" data-prompt="$"}
-python3 ~/myCode/myViamFile.py
-```
-
-{{% /tab %}}
-{{% tab name="Go" %}}
-
-```sh {class="command-line" data-prompt="$"}
-go run ~/myCode/myViamFile.go
-```
-
-{{% /tab %}}
-{{% tab name="TypeScript" %}}
-
-For an example, see [this execution demo.](https://github.com/viamrobotics/viam-typescript-sdk/tree/main/examples/vanilla)
-
-{{% /tab %}}
-{{% tab name="C++" %}}
-
-For information on running C++ code see [the instructions on GitHub](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md).
-
-{{% /tab %}}
-{{% tab name="Flutter" %}}
-
-```sh {class="command-line" data-prompt="$"}
-flutter run <DART_FILE>
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-{{% /tab %}}
-{{% tab name="Run automatically as a process" %}}
-
-If you want to run your code on-machine automatically when your machine boots, you can configure your machine to run your code as a _{{< glossary_tooltip term_id="process" text="process" >}}_.
-You can configure the process to run once on boot, or continuously.
-
-Find information on how to configure a process in [Processes](/configure/processes/).
-
-{{% /tab %}}
-{{< /tabs >}}
-
-## Debug
-
-Read and filter a machine's logs to view updates from your machine's `viam-server` instance and troubleshoot issues with your program.
-
-{{< tabs >}}
-{{% tab name="App UI" %}}
-
-Navigate to the **LOGS** tab of your machine's page in the [Viam app](https://app.viam.com).
-
-Use the **Filter** input to filter the logs by key terms, and select from the **Levels** dropdown menu to filter the logs by warning level:
-
-![Filtering by log level of info in the logs tab of the Viam app.](/build/program/sdks/log-level-info.png)
-
-{{% /tab %}}
-{{% tab name="CLI" %}}
-
-{{< tabs >}}
-{{% tab name="Linux" %}}
-
-```sh {class="command-line" data-prompt="$"}
-sudo journalctl --unit=viam-server
-```
-
-{{% /tab %}}
-{{% tab name="macOS" %}}
-
-```sh {class="command-line" data-prompt="$"}
-cat $(brew --prefix)/var/log/viam.log
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-{{% /tab %}}
-{{< /tabs >}}
-
-## Next Steps
-
-For examples projects, see:
-
-{{< cards >}}
-{{% card link="/tutorials/" %}}
-{{< /cards >}}

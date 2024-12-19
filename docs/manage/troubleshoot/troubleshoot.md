@@ -5,7 +5,7 @@ weight: 35
 layout: "docs"
 type: "docs"
 description: "A guide to troubleshooting a Viam-based machine or system of machines with fixes to common problems."
-date: "2022-01-01"
+date: "2024-12-18"
 # updated: ""  # When the content was last entirely checked
 aliases:
   - /appendix/troubleshooting/
@@ -74,7 +74,26 @@ Once you have added the fragment, you can use the [Viam CLI](/dev/tools/cli) to 
 viam machines part shell --organization=<org name> --location=<location name> --machine=<machine id>
 ```
 
-TODO: You can [access the local log file](/installation/manage-viam-server/#view-viam-server-logs) on your machine if needed.
+To access your machine's local log file, run the respective command:
+
+{{< tabs >}}
+{{% tab name="Linux" %}}
+
+```sh {class="command-line" data-prompt="$"}
+sudo journalctl --unit=viam-server
+```
+
+{{% /tab %}}
+{{% tab name="Mac" %}}
+
+```sh {class="command-line" data-prompt="$"}
+cat $(brew --prefix)/var/log/viam.log
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+For more information, see [access the local log file](/installation/manage-viam-server/#view-viam-server-logs).
 
 ## Restart your machine
 
@@ -99,3 +118,7 @@ If you request support, you may be asked to share your location with the Viam Su
 To do so, navigate to the location you need support with and click, **Add Viam support**.
 
 Once you have received support, you can remove Viam Support from your location by clicking **Remove Viam support**.
+
+## Viam app status
+
+For information on the status of [app.viam.com](https://app.viam.com), visit [status.viam.com](https://status.viam.com/).

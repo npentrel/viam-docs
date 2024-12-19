@@ -184,7 +184,7 @@ With all your machines configured using the same fragment, if you need to update
 {{< alert title="Note" color="note" >}}
 If this was a real company, adding the fragment to each individual machine would quickly become tiring.
 We're showing you how to do this manually as a learning device.
-Once you understand how to configure machines and use fragments, you can use [Provisioning](/fleet/provision/) to automatically set up your devices.
+Once you understand how to configure machines and use fragments, you can use [Provisioning](/manage/fleet/provision/setup/) to automatically set up your devices.
 {{< /alert >}}
 
 ### Configure your first machine
@@ -815,10 +815,10 @@ For an example of setting up text alerts, see the [Detect a Person and Send a Ph
 For another example of a custom TypeScript interface, check out the [Claw Game tutorial](/tutorials/projects/claw-game/).
 Instead of displaying data, the claw game interface has buttons to control a robotic arm.
 
-In this tutorial we covered configuring a fleet of machines using fragments, but to automate the setup process further, you can [use the Viam Agent to provision machines](/fleet/provision/).
+In this tutorial we covered configuring a fleet of machines using fragments, but to automate the setup process further, you can [use `viam-agent` to provision machines](/manage/fleet/provision/setup/).
 
 {{< cards >}}
-{{% card link="/fleet/provision/" %}}
+{{% card link="/manage/fleet/provision/setup/" %}}
 {{% card link="/tutorials/services/visualize-data-grafana/" %}}
 {{% card link="/tutorials/projects/helmet/" %}}
 {{< /cards >}}
