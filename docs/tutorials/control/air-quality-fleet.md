@@ -54,6 +54,8 @@ For each machine, you need the following hardware:
 
 In this section we'll set up one air sensing machine as our development device.
 
+### Create your machine
+
 {{< table >}}
 {{% tablestep number=1 %}}
 
@@ -94,7 +96,14 @@ Follow the **Set up your machine part** instructions to install `viam-server` on
 When your machine shows as connected, continue to the next step.
 
 {{% /tablestep %}}
-{{% tablestep number=6 %}}
+
+{{< /table >}}
+
+### Configure your sensor
+
+{{< table >}}
+
+{{% tablestep number=1 %}}
 
 Navigate to the **CONFIGURE** tab of the machine, click the **+** button and select **Component or service**.
 Click **sensor**, then search for `sds011` and add the **sds001:v1** {{< glossary_tooltip term_id="module" text="module" >}}.
@@ -103,7 +112,7 @@ Name the sensor `PM_sensor` and click **Create**.
 {{<imgproc src="/tutorials/air-quality-fleet/add-sensor-module.png" resize="700x" declaredimensions=true alt="The Add Module button that appears after you click the model name." style="width:400px" class="imgzoom shadow">}}
 
 {{% /tablestep %}}
-{{% tablestep number=7 %}}
+{{% tablestep number=2 %}}
 
 In the newly created **PM_sensor** card, replace the contents of the attributes box (the empty curly braces `{}`) with the following:
 
@@ -114,7 +123,7 @@ In the newly created **PM_sensor** card, replace the contents of the attributes 
 ```
 
 {{% /tablestep %}}
-{{% tablestep number=8 %}}
+{{% tablestep number=3 %}}
 
 <a name="usb-path"></a>To figure out which port your sensor is connected to on your board, SSH to your board and run the following command:
 
@@ -135,235 +144,51 @@ Now that you have found the identifier, put the full path to the device into you
 ```
 
 {{% /tablestep %}}
-{{% tablestep number=9 %}}
+{{% tablestep number=4 %}}
 
 Save the config.
 
 {{<imgproc src="/tutorials/air-quality-fleet/configured-sensor.png" resize="1000x" declaredimensions=true alt="Configure tab showing PM sensor and the sensor module configured." style="width:600px" class="imgzoom shadow">}}
 
 {{% /tablestep %}}
-{{% tablestep number=10 %}}
+{{% tablestep number=5 %}}
 
 On your sensor configuration panel, click on the **TEST** panel to check that you are getting readings from your sensor.
 
 {{<imgproc src="/tutorials/air-quality-fleet/get-readings.png" resize="1000x" declaredimensions=true alt="The sensor readings on the control tab." style="width:600px" class="imgzoom shadow">}}
 
-If you do not see readings, check the **LOGS** tab for errors, double-check that serial communication is enabled on the single board computer, and check that the `usb_interface` path is correctly specified (click below).
+If you do not see readings, check the **LOGS** tab for errors, double-check that serial communication is enabled on the single board computer, and check that the `usb_interface` path is correctly specified.
 
-This is how you set up one machine.
-If you are following along for the RobotsRUs business from our example, create additional machines in each sub-location, that is, in the `Oregon Office` location and in the `New York Office` location.
+{{% /tablestep %}}
 
-## Set up your hardware
+{{< /table >}}
 
-{{% alert title="Note" color="note" %}}
-If this were a real company and you were shipping air sensing machines to customers, you would have the customer plug in power to the machine wherever they are setting it up.
-Since you already installed `viam-server`, once a customer connects the machine to power and sets up wifi, the machine will automatically re-connect to the Viam app and pull any configuration updates.
-{{% /alert %}}
-
-For each sensing machine:
-
-1. Connect the PM sensor to a USB port on the machine's SBC.
-
-1. Position your sensing machines in strategic locations, and connect them to power.
-   Here are some ideas for where to place sensing machines:
-
-   - At home:
-     - In an outdoor location protected from weather, such as under the eaves of your home
-     - In the kitchen, where cooking can produce pollutants
-     - Anywhere you spend lots of time indoors and want to measure exposure to pollutants
-   - At work:
-     - At your desk to check your exposure throughout the day
-     - Near a door or window to see whether pollutants are leaking in
-
-## Configure your air quality sensors
-
-You need to [configure](/operate/get-started/supported-hardware/#configure-hardware-on-your-machine) your hardware so that each of your machines can communicate with its attached air quality [sensor](/operate/reference/components/sensor/).
-
-No matter how many sensing machines you use, you can configure them efficiently by using a reusable configuration block called a _{{< glossary_tooltip term_id="fragment" text="fragment" >}}_.
-Fragments are a way to share and manage identical machine configurations across multiple machines.
-Instead of going through all the configuration steps for each machine, you'll start by configuring just one machine and create a fragment based on that machine's configuration.
-Then, you'll add the fragment to each of your machines.
-With all your machines configured using the same fragment, if you need to update the config in the future, you can just update the fragment and all machines will automatically get the update.
-
-{{< alert title="Note" color="note" >}}
-If this was a real company, adding the fragment to each individual machine would quickly become tiring.
-We're showing you how to do this manually as a learning device.
-Once you understand how to configure machines and use fragments, you can use [Provisioning](/manage/fleet/provision/setup/) to automatically set up your devices.
-{{< /alert >}}
-
-### Configure your first machine
-
-#### Configure the sensor
-
-1. Navigate to the **CONFIGURE** tab of the machine details page in the [Viam app](https://app.viam.com) for your first machine.
-2. Click the **+** (Create) button and click **Component or service** from the dropdown.
-   Click **sensor**, then search for `sds011` and click **sds001:v1** from the results.
-3. Click **Add module**.
-   This adds the {{< glossary_tooltip term_id="module" text="module" >}} that provides the sensor model that supports the specific hardware we are using for this tutorial.
-
-   ![The Add Module button that appears after you click the model name.](/tutorials/air-quality-fleet/add-sensor-module.png)
-
-4. Give the sensor a name like `PM_sensor` and click **Create**.
-5. In the newly created **PM_sensor** card, replace the contents of the attributes box (the empty curly braces `{}`) with the following:
-
-   ```json {class="line-numbers linkable-line-numbers"}
-   {
-     "usb_interface": "<REPLACE WITH THE PATH YOU IDENTIFY>"
-   }
-   ```
-
-6. <a name="usb-path"></a>Now you need to figure out which port your sensor is connected to on your board.
-   SSH to your board and run the following command:
-
-   ```sh{class="command-line" data-prompt="$"}
-   ls /dev/serial/by-id
-   ```
-
-   This should output a list of one or more USB devices attached to your board, for example `usb-1a86_USB_Serial-if00-port0`.
-   If the air quality sensor is the only device plugged into your board, you can be confident that the only device listed is the correct one.
-   If you have multiple devices plugged into different USB ports, you may need to choose one path and test it, or unplug something, to figure out which path to use.
-
-   Now that you have found the identifier, put the full path to the device into your config, for example:
-
-   ```json {class="line-numbers linkable-line-numbers"}
-   {
-     "usb_interface": "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0"
-   }
-   ```
-
-7. Save the config.
-   Your machine config should now resemble the following:
-
-   ![Configure tab showing PM sensor and the sensor module configured.](/tutorials/air-quality-fleet/configured-sensor.png)
-
-#### Configure data capture and sync
+### Configure data management
 
 You have configured the sensor so the board can communicate with it, but sensor data is not yet being saved anywhere.
 Viam's [data management service](/data-ai/capture-data/capture-sync/) lets you capture data locally from each sensor and then sync it to the cloud where you can access historical sensor data and see trends over time.
-Once you configure the rest of your sensing machines, you'll be able to remotely access data from all sensors in all locations, and when you're ready, you can give customers [access](/manage/manage/access/) to the data from the sensors in their locations.
+As you configure more sensing machines, you'll be able to remotely access data from all machines.
 
-Configure data capture and sync as follows:
+{{< table >}}
 
-1. Click the **+** (Create) button and click **Component or service** from the dropdown.
-2. Click **data management**.
-3. Give your data manager a name such as the auto-populated name `data_manager-1` and click **Create**.
-4. Toggle **Syncing** to the on position.
-   Set the sync interval to `0.05` minutes so that data syncs to the cloud every 3 seconds.
-   You can change the interval if you like, just don't make it too long or you will have to wait a long time before you see your data!
-5. Let's add a tag to all your data so that you can query data from all your air quality sensors more easily in later steps.
-   In the **Tags** field, type `air-quality` and click **+ Tag: air-quality** when it appears to create a new tag.
-   This tag will now automatically be applied to all data collected by this data manager.
-6. Now the data management service is available to any components on your machine, and you can set up data capture on the sensor:
-7. On your **PM_sensor** card, click **Add method**.
-8. From the **Type** dropdown, select **Readings**.
-9. Set the **Frequency** to `0.1` readings per second.
-   This will capture air quality data once every ten seconds.
-   It is useful to capture data frequently for testing purposes, but you can always change this frequency later since you probably don't need to capture data this frequently all day forever.
-10. Save the config.
-
-### Create a fragment
-
-{{% alert title="Note" color="note" %}}
-If you are only using one air quality sensing machine for this tutorial, you do not need to create or use fragments, since fragments are useful only when configuring multiple machines.
-You can skip to [Test your sensors](#test-your-sensors).
-{{% /alert %}}
-
-While you configured your machine with the builder UI, the Viam app generated a JSON configuration file with all your parameters.
-This is the file that tells `viam-server` what resources are available to it and how everything is connected.
-Click **JSON** in the upper-left corner of the **CONFIGURE** tab to view the generated JSON file.
-You can manually edit this file instead of using the builder UI if you are familiar with JSON.
-
-In any case, now that the JSON is generated, you are ready to create a {{< glossary_tooltip term_id="fragment" text="fragment" >}}:
-
-1. Select and copy the entire contents of the JSON config.
-2. Navigate to the **FLEET** page and go to the [**FRAGMENTS** tab](https://app.viam.com/fragments).
-3. Click **Create fragment** and change your fragment's name by clicking on it. We used the name `air-sensing-machine`.
-4. Replace the empty curly braces `{}` with the config you copied from your machine.
-5. Click **Save**.
-6. Now, you can actually delete the entire config from your machine!
-   In the next section, you will replace it with the fragment you just created so that it gets updated alongside all your other machines when you update the fragment in the future.
-
-   Navigate back to your machine's **CONFIGURE** tab, select **JSON** mode, and delete the entire contents of the config.
-   When you try to save, you'll get an invalid JSON error because it can't be empty.
-   Put in a set of curly braces `{}` and then save the config successfully.
-
-### Add the fragment to all your machines
-
-Add the fragment you just created to each of your machines including the first one:
-
-1. Click the **+** button, then click **Insert fragment** in the dropdown menu.
-2. Search for and click the name of your fragment, for example `air-sensing-machine`.
-
-   ![The insert fragment UI.](/tutorials/air-quality-fleet/add-fragment.png)
-
-3. Click **Insert fragment**.
-   The module, sensor, and data manager will appear in your config.
-4. Save the config.
-5. Repeat these steps on the machine details page for each of your air quality sensing machines.
-
-## Test your sensors
-
-Now that all your hardware is configured, it's a good idea to make sure readings are being gathered by the sensors and sent to the cloud before proceeding with the tutorial.
-For each machine:
-
-1. Go to the machine details page in the [Viam app](https://app.viam.com.) and navigate to the **CONTROL** tab.
-2. Within the **Sensors** section, click **Get Readings** for the **PM_sensor**.
-   If the sensor software and hardware is working, you should see values populate the **Readings** column.
-
-   ![The sensor readings on the control tab.](/tutorials/air-quality-fleet/get-readings.png)
-
-   If you do not see readings, check the **LOGS** tab for errors, double-check that serial communication is enabled on the single board computer, and check that the `usb_interface` path is correctly specified (click below).
-
-   {{< expand "Click here for usb_interface troubleshooting help" >}}
-
-If you only have one USB device plugged into each of your boards, the `usb_interface` value you configured in the sensor config is likely (conveniently) the same for all of your machines.
-If not, you can use [fragment overwrite](/manage/fleet/reuse-configuration/#modify-fragment-settings-on-a-machine) to modify the value on any machine for which it is different:
-
-1. If you're not getting sensor readings from a given machine, check the path of the USB port using the same [process by which you found the first USB path](#usb-path).
-2. If the path to your sensor on one machine is different from the one you configured in the fragment, add a fragment overwrite to the config of that machine to change the path without needing to remove the entire fragment.
-   Follow the [instructions to add a fragment overwrite](/manage/fleet/reuse-configuration/#modify-fragment-settings-on-a-machine) to your machine's config, using the following JSON template:
-
-   ```json {class="line-numbers linkable-line-numbers"}
-   "fragment_mods": [
-   {
-     "fragment_id": "<REPLACE WITH YOUR FRAGMENT ID>",
-     "mods": [
-       {
-         "$set": {
-           "components.PM_sensor.attributes.usb_interface": "<REPLACE WITH THE PATH TO THE SENSOR ON YOUR MACHINE>"
-         }
-       }
-     ]
-   }
-   ],
-   ```
-
-   Replace the values with your fragment ID and with the USB path you identify.
-   If you named your sensor something other than `PM_sensor`, change the sensor name in the template above.
-
-3. Repeat this process for each machine that needs a different `usb_interface` value.
-   If you have lots of machines with one `usb_interface` value, and lots of machines with a second one, you might consider duplicating the fragment, editing that value, and using that second fragment instead of the first one for the applicable machines, rather than using a fragment overwrite for each of the machines.
-   You have options.
-
-   {{< /expand >}}
-
-{{% /tablestep %}}
-{{% tablestep number=11 %}}
+{{% tablestep number=1 %}}
 
 Click **+** and add the **data management** service.
-Toggle **Syncing** to the on position and set the sync interval to `0.05` minutes so that data syncs to the cloud every 3 seconds.
 
-Add a tag to all your data so that you can query data from all your air quality sensors more easily in later steps.
-In the **Tags** field, type `air-quality` and click **+ Tag: air-quality** when it appears to create a new tag.
-This tag will now automatically be applied to all data collected by this data manager.
+On the data manager panel:
+
+- Toggle **Syncing** to the on position.
+- Set the sync interval to `0.05` minutes (every 3 seconds).
+- In the **Tags** field, add `air-quality`.
+  This tag will now automatically be applied to all data collected by this data manager which will make querying data easier.
 
 {{% /tablestep %}}
-{{% tablestep number=12 %}}
+{{% tablestep number=2 %}}
 
 On the **PM_sensor** panel, click **Add method** to add data capture.
 
-- **Type** :**Readings**.
-- **Frequency**: `0.1`
+- **Type**: **Readings**.
+- **Frequency**: `0.1` (every 10 seconds).
 
 Save the config.
 
@@ -390,7 +215,7 @@ If you'd like to graph your data using a Grafana dashboard, try our [Visualize D
 ### Set up your TypeScript project
 
 Complete the following steps on your laptop or desktop.
-You don't need to install or edit anything else on your machine's single-board computer (aside from `viam-server` which you already did); you'll be running the TypeScript code from your personal computer.
+You don't need to install or edit anything else on your machine's single-board computer (aside from `viam-server` which you already did); you'll be developing your TypeScript app from your personal computer and deploying it to Viam.
 
 {{< table >}}
 {{% tablestep number=1 %}}
@@ -450,11 +275,12 @@ npm install
 {{% /tablestep %}}
 {{< /table >}}
 
-### Authenticate your code to your Viam app location
+### Access machines from your app
 
-Your TypeScript code requires an API key to establish a connection to your machines.
-In the final dashboard, these will be provided to your webapp through the local storage of your browser.
-For development purposes, you will use an API key for your development machine.
+Viam apps provide access to a machine by placing its API key in your local storage.
+You can access the data from your browser's local storage with the following code.
+
+Currently, Viam apps only provide access to single machines but in future you will be able to access entire locations or organization.
 
 {{< table >}}
 {{% tablestep number=1 %}}
@@ -508,22 +334,95 @@ document.addEventListener("DOMContentLoaded", async () => {
 {{% /tablestep %}}
 {{% tablestep number=2 %}}
 
-To test the dashboard with your development machine, you can temporarily set your machine's API key, API key ID and machine ID at the top of the `main()` function.
+For developing your app on localhost, **add the same information to your browsers local storage**.
 
-You can obtain your API key and API key ID from your machines **CONNECT** tab.
-You can copy the machine ID using the **...** menu at the top right and clicking **Copy machine ID**.
+Navigate to [Camera Viewer](https://air-quality_naomi.viamapplications.com/) and log in, then select your development machine.
 
-{{% snippet "secret-share.md" %}}
+Open Developer tools, go to the console and paste the following JavaScript to obtain the cookies you need:
+
+```js {class="line-numbers linkable-line-numbers" data-line=""}
+function generateCookieSetterScript() {
+  // Get all cookies from current page
+  const currentCookies = document.cookie.split(";");
+  let cookieSetterCode = "// Cookie setter script for localhost\n";
+  cookieSetterCode +=
+    "// Copy and paste this entire script into your browser console when on localhost\n\n";
+
+  // Process each cookie
+  let cookieCount = 0;
+  currentCookies.forEach((cookie) => {
+    if (cookie.trim()) {
+      // Extract name and value from the cookie
+      const [name, value] = cookie.trim().split("=");
+
+      // Add code to set this cookie
+      cookieSetterCode += `document.cookie = "${name}=${value}; path=/";\n`;
+      cookieCount++;
+    }
+  });
+
+  // Add summary comment
+  cookieSetterCode += `\nconsole.log("Set ${cookieCount} cookies on localhost");\n`;
+
+  // Display the generated code
+  console.log(cookieSetterCode);
+
+  // Create a textarea element to make copying easier
+  const textarea = document.createElement("textarea");
+  textarea.value = cookieSetterCode;
+  textarea.style.position = "fixed";
+  textarea.style.top = "0";
+  textarea.style.left = "0";
+  textarea.style.width = "100%";
+  textarea.style.height = "250px";
+  textarea.style.zIndex = "9999";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+}
+
+// Execute the function
+generateCookieSetterScript();
+```
+
+{{% /tablestep %}}
+{{% tablestep number=3 %}}
+
+Copy the resulting script. It will look like this:
+
+```js {class="line-numbers linkable-line-numbers" data-line=""}
+// Cookie setter script for localhost
+// Copy and paste this entire script into your browser console when on localhost
+
+document.cookie = "<SECRET COOKIE INFO>; path=/";
+document.cookie = "machinesWhoseCredentialsAreStored=<MACHINE ID>; path=/";
+
+console.log("Set 2 cookies on localhost");
+```
+
+{{% /tablestep %}}
+{{% tablestep number=4 %}}
+
+Run the following command to serve the app you are building:
+
+```sh {class="command-line" data-prompt="$" data-output="2-10"}
+npm run start
+```
+
+Open the app in your browser at `http://127.0.0.1:8000/`.
+
+Then, open developer tools, go to the console and paste the copied JavaScript code to set your cookies.
 
 {{% /tablestep %}}
 {{< /table >}}
 
 ### Add functionality to your code
 
+Now that you have the connection code, you are ready to add code that establishes a connection from the computer running the code to the Viam Cloud where the air quality sensor data is stored.
+
 {{< table >}}
 {{% tablestep number=1 %}}
 
-Now that you have the connection code, you are ready to add code that establishes a connection from the computer running the code to the Viam Cloud where the air quality sensor data is stored.
 You'll first create a client to obtain the organization and location ID. Then you'll get a `dataClient` instance which accesses all the data in your location, and then query this data to get only the data tagged with the `air-quality` tag you applied with your data service configuration.
 The following code also queries the data for a list of the machines that have collected air quality data so that later, depending on the API key used with the code, your dashboard can show the data from any number of machines.
 
@@ -689,129 +588,144 @@ Now, you'll create a page to display the data.
 The complete code is available on [GitHub](https://github.com/viam-labs/air-quality-fleet) as a reference.
 {{% /alert %}}
 
-1. Create a folder called <file>static</file> inside your <file>aqi-dashboard</file> folder.
-   Inside the <file>static</file> folder, create a file called <file>index.html</file>.
-   This file specifies the contents of the webpage that you will see when you run your code.
-   Paste the following into <file>index.html</file>:
+{{< table >}}
+{{% tablestep number=1 %}}
 
-   ```{class="line-numbers linkable-line-numbers" data-line="11"}
-   <!doctype html>
-   <html>
-   <head>
-    <link rel="stylesheet" href="style.css">
-   </head>
-   <body>
-    <div id="main">
-      <div>
-        <h1>Air Quality Dashboard</h1>
-      </div>
-      <script type="module" src="main.js"></script>
-      <div>
-        <h2>PM 2.5 readings</h2>
-        <p>The following are averages of the last few readings from each machine:</p>
-      </div>
-      <div id="insert-readings">
-        <p><i>Loading data...
-          It may take a few moments for the data to load.
-          Do not refresh page.</i></p>
-      </div>
-      <br>
-      <div class="key">
-        <h4 style="margin:5px 0px">Key:</h4>
-        <p class="good">Good air quality</p>
-        <p class="moderate">Moderate</p>
-        <p class="unhealthy-sensitive">Unhealthy for sensitive groups</p>
-        <p class="unhealthy">Unhealthy</p>
-        <p class="very-unhealthy">Very unhealthy</p>
-        <p class="hazardous">Hazardous</p>
-      </div>
-      <p>
-        After the data has loaded, you can refresh the page for the latest readings.
-      </p>
+Create a folder called <file>static</file> inside your <file>aqi-dashboard</file> folder.
+Inside the <file>static</file> folder, create a file called <file>index.html</file>.
+This file specifies the contents of the webpage that you will see when you run your code.
+Paste the following into <file>index.html</file>:
+
+```{class="line-numbers linkable-line-numbers" data-line="11"}
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="main">
+    <div>
+      <h1>Air Quality Dashboard</h1>
     </div>
-   </body>
-   </html>
-   ```
+    <script type="module" src="main.js"></script>
+    <div>
+      <h2>PM 2.5 readings</h2>
+      <p>The following are averages of the last few readings from each machine:</p>
+    </div>
+    <div id="insert-readings">
+      <p><i>Loading data...
+        It may take a few moments for the data to load.
+        Do not refresh page.</i></p>
+    </div>
+    <br>
+    <div class="key">
+      <h4 style="margin:5px 0px">Key:</h4>
+      <p class="good">Good air quality</p>
+      <p class="moderate">Moderate</p>
+      <p class="unhealthy-sensitive">Unhealthy for sensitive groups</p>
+      <p class="unhealthy">Unhealthy</p>
+      <p class="very-unhealthy">Very unhealthy</p>
+      <p class="hazardous">Hazardous</p>
+    </div>
+    <p>
+      After the data has loaded, you can refresh the page for the latest readings.
+    </p>
+  </div>
+</body>
+</html>
+```
 
 {{% alert title="Fun fact" color="info" %}}
+
 Line 11, highlighted above, is where the HTML output of the TypeScript file <file>main.ts</file> will get pulled in.
 
 TypeScript is a superset of JavaScript with added functionality, and it transpiles to JavaScript, which is why your file is called <file>main.ts</file> even though line 11 indicates `src="main.js"`.
 If you look at line 5 of <file>package.json</file>, you can see that `./main.ts` builds out to `static/main.js`.
+
 {{% /alert %}}
 
-2. Now you'll create a style sheet to specify the fonts, colors, and spacing of your dashboard.
-   Create a new file inside your <file>static</file> folder and name it <file>style.css</file>.
-3. Paste the following into <file>style.css</file>:
+{{% /tablestep %}}
+{{% tablestep number=2 %}}
 
-   ```{class="line-numbers linkable-line-numbers"}
-   body {
-     font-family: Helvetica;
-     margin-left: 20px;
-   }
+Now you'll create a style sheet to specify the fonts, colors, and spacing of your dashboard.
+Create a new file inside your <file>static</file> folder and name it <file>style.css</file>.
 
-   div {
-     background-color: whitesmoke;
-   }
+{{% /tablestep %}}
+{{% tablestep number=3 %}}
 
-   h1 {
-     color: black;
-   }
+Paste the following into <file>style.css</file>:
 
-   h2 {
-     font-family: Helvetica;
-   }
+```{class="line-numbers linkable-line-numbers"}
+body {
+  font-family: Helvetica;
+  margin-left: 20px;
+}
 
-   .inner-div {
-     font-family: monospace;
-     border: .2px solid;
-     background-color: lightblue;
-     padding: 20px;
-     margin-top: 10px;
-     max-width: 320px;
-     font-size: large;
-   }
+div {
+  background-color: whitesmoke;
+}
 
-   .key {
-     max-width: 200px;
-     padding: 0px 5px 5px;
-   }
+h1 {
+  color: black;
+}
 
-   .key p {
-     padding: 4px;
-     margin: 0px;
-   }
+h2 {
+  font-family: Helvetica;
+}
 
-   .good {
-     background-color: lightgreen;
-   }
+.inner-div {
+  font-family: monospace;
+  border: .2px solid;
+  background-color: lightblue;
+  padding: 20px;
+  margin-top: 10px;
+  max-width: 320px;
+  font-size: large;
+}
 
-   .moderate {
-     background-color: yellow;
-   }
+.key {
+  max-width: 200px;
+  padding: 0px 5px 5px;
+}
 
-   .unhealthy-sensitive {
-     background-color: orange;
-   }
+.key p {
+  padding: 4px;
+  margin: 0px;
+}
 
-   .unhealthy {
-     background-color: red;
-   }
+.good {
+  background-color: lightgreen;
+}
 
-   .very-unhealthy {
-     background-color: violet;
-   }
+.moderate {
+  background-color: yellow;
+}
 
-   .hazardous {
-     color: white;
-     background-color: purple;
-   }
+.unhealthy-sensitive {
+  background-color: orange;
+}
 
-   #main {
-     max-width:600px;
-     padding:10px 30px 10px;
-   }
-   ```
+.unhealthy {
+  background-color: red;
+}
+
+.very-unhealthy {
+  background-color: violet;
+}
+
+.hazardous {
+  color: white;
+  background-color: purple;
+}
+
+#main {
+  max-width:600px;
+  padding:10px 30px 10px;
+}
+```
+
+{{% /tablestep %}}
+{{< /table >}}
 
 ### Full tutorial code
 
@@ -846,11 +760,6 @@ This will also allow others to use the dashboard.
 {{< table >}}
 {{% tablestep number=1 %}}
 
-**Remove any API key or IDs before continuing.**
-
-{{% /tablestep %}}
-{{% tablestep number=2 %}}
-
 **Create a <FILE>meta.json</FILE>** in your project folder using this template:
 
 ```json
@@ -874,7 +783,7 @@ Find the **Public namespace** and copy that string.
 Replace `<your-namespace>` with your public namespace.
 
 {{% /tablestep %}}
-{{% tablestep number=3 %}}
+{{% tablestep number=2 %}}
 
 **Register your module** with Viam:
 
@@ -883,11 +792,11 @@ viam module create --name="air-quality" --public-namespace="your-namespace"
 ```
 
 {{% /tablestep %}}
-{{% tablestep number=4 %}}
+{{% tablestep number=3 %}}
 
 **Package your static files and your <FILE>meta.json</FILE> file and upload them** to the Viam Registry:
 
-```sh {class="command-line" data-prompt="$" data-output="3-10"}
+```sh {class="command-line" data-prompt="$" data-output=""}
 npm run build
 tar -czvf module.tar.gz static meta.json
 viam module upload --upload=module.tar.gz --platform=any --version=0.0.1
@@ -896,11 +805,11 @@ viam module upload --upload=module.tar.gz --platform=any --version=0.0.1
 For subsequent updates run these commands again with an updated version number.
 
 {{% /tablestep %}}
-{{% tablestep number=5 %}}
+{{% tablestep number=4 %}}
 
 **Try your app** by navigating to:
 
-```
+```txt
 https://air-quality_your-public-namespace.viamapplications.com
 ```
 
@@ -974,16 +883,32 @@ Once a customer receives your machine, they will:
 3. The customer uses another device to connect to the machine's WiFi network and the user gives the machine the password for their WiFi network.
 4. The machine can now connect to the internet and complete setup based on the fragment it knows about.
 
-### Create the fragment air sensing machines
+### Create the fragment for air sensing machines
 
 In this section you will create the {{< glossary_tooltip term_id="fragment" text="fragment" >}}, that is the configuration template that all other machines will use.
 
 1. Navigate to the **FLEET** page and go to the [**FRAGMENTS** tab](https://app.viam.com/fragments).
+1. Click Create fragment.
+1. Name the fragment `air-quality-configuration`.
 1. Add the same components that you added to the development machine when you [set up one device for development](#set-up-one-device-for-development).
-1. As a shortcut, you can use the JSON mode on the machine you already configured and copy the machine's configuration to the fragment.
+
+   As a shortcut, you can use the JSON mode on the machine you already configured and copy the machine's configuration to the fragment.
+
+   {{< expand "Click here for info about the usb_interface value." >}}
+
+If you only have one USB device plugged into each of your boards, the `usb_interface` value you configured in the sensor config is likely (conveniently) the same for all of your machines.
+
+If not, you can use [fragment overwrite](/manage/fleet/reuse-configuration/#modify-fragment-settings-on-a-machine) to modify the value on any machine for which it is different.
+
+{{< /expand >}}
+
+1. Specify the version for the sds011 module.
+   At the point of writing the version is `0.2.1`.
+   Specifying a specific version or a specific minor or major version of a module will ensure that even if the module you use changes, your machines remain functional.
+   You can update your fragment at any point, any machines using it will update to use the new configuration.
 
 {{< alert title="Tip: Use the fragment on your development machine" color="tip" >}}
-To avoid differences between fragment and development machines, we recommend you remove the configured resources from the development machine and add the fragment you just created instead.
+To avoid differences between fragment and development machines, we recommend you remove the configured resources from the development machine and add the fragment you just created instead using the **+** button.
 {{< /alert >}}
 
 ### Provision your machines
@@ -1035,7 +960,7 @@ You can create locations and machines programmatically, with the [Fleet manageme
 {{< /alert >}}
 
 {{% /tablestep %}}
-{{% tablestep number=3 %}}
+{{% tablestep number=4 %}}
 
 **Run the preinstall script**
 
