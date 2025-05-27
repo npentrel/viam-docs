@@ -867,7 +867,7 @@ Repeat to add the New York office: Add a new location called `New York Office`, 
 
 ## Getting machines ready for third parties
 
-Continuing with our ficticious company, let's assume you want to ship air sensing machines to customers as ready-to-go as possible.
+Continuing with our fictitious company, let's assume you want to ship air sensing machines to customers as ready-to-go as possible.
 In other words, you want to provision devices.
 
 Before an air sensing machine leaves your factory, you'd complete the following steps:
@@ -962,9 +962,7 @@ You can create locations and machines programmatically, with the [Fleet manageme
 {{% /tablestep %}}
 {{% tablestep number=4 %}}
 
-**Run the preinstall script**
-
-Run the preinstall script without options and it will attempt to auto-detect a mounted root filesystem (or for Raspberry Pi, bootfs) and also automatically determine the architecture.
+**Run the preinstall script** without options and it will attempt to auto-detect a mounted root filesystem (or for Raspberry Pi, bootfs) and also automatically determine the architecture.
 
 ```sh {class="command-line" data-prompt="$"}
 sudo ./preinstall.sh
