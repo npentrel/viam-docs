@@ -20,7 +20,7 @@ cost: 200
 # 2. The reader can identify when to use fragments and evaluate when it is worth using fragments.
 #    The reader can create their own fragments for their projects and knows what to include and exclude from them.
 # 3. The reader recognizes how permissions enable the management of data for a business across multiple customers while providing each customer access to their own data.
-# 4. The reader can deploy custom frond ends that end users can use to operate their machines.
+# 4. The reader can deploy custom front ends that end users can use to operate their machines.
 ---
 
 In this tutorial you will learn how to set up a fleet of devices for yourself or third parties to collect air quality data.
@@ -34,7 +34,7 @@ By completing this project, you will learn to:
 - Organize your fleet using {{< glossary_tooltip term_id="location" text="locations" >}}
 - Collect and sync data from multiple machines
 - Use the Viam TypeScript SDK to query sensor data
-- Create a custom dashboard that you and third parties can use to view data for their respective machines.
+- Create a custom dashboard that you and third parties can use to view data for their respective machines
 
 {{< /alert >}}
 
@@ -45,7 +45,7 @@ By completing this project, you will learn to:
 You can create one or more machines to measure air quality.
 For each machine, you need the following hardware:
 
-- one or more [SDS011 Nova PM sensors](https://www.amazon.com/SDS011-Quality-Detection-Conditioning-Monitor/dp/B07FSDMRR5)
+- One [SDS011 Nova PM sensors](https://www.amazon.com/SDS011-Quality-Detection-Conditioning-Monitor/dp/B07FSDMRR5)
   - If you choose to use a different air quality sensor, you may need to [create your own module](/operate/get-started/other-hardware/) implementing the [sensor API](/operate/reference/components/sensor/#api) for your specific hardware.
 - A single-board computer (SBC) [capable of running `viam-server`](https://docs.viam.com/installation/)
 - An appropriate power supply
@@ -197,7 +197,8 @@ You can check that your sensor data is being synced by clicking on the **...** m
 {{% /tablestep %}}
 {{< /table >}}
 
-Congratulations, if you made it this far, you now have a functional air sensing machine.
+Congratulations.
+If you made it this far, you now have a functional air sensing machine.
 Let's create a dashboard for its measurements next.
 
 ## Create a dashboard
@@ -280,7 +281,7 @@ npm install
 Viam apps provide access to a machine by placing its API key in your local storage.
 You can access the data from your browser's local storage with the following code.
 
-Currently, Viam apps only provide access to single machines but in future you will be able to access entire locations or organization.
+Currently, Viam apps only provide access to single machines but in future you will be able to access entire locations or organizations.
 
 {{< table >}}
 {{% tablestep number=1 %}}
@@ -334,11 +335,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 {{% /tablestep %}}
 {{% tablestep number=2 %}}
 
-For developing your app on localhost, **add the same information to your browsers local storage**.
+For developing your app on localhost, **add the same information to your browser's local storage**.
 
 Navigate to [Camera Viewer](https://air-quality_naomi.viamapplications.com/) and log in, then select your development machine.
 
-Open Developer tools, go to the console and paste the following JavaScript to obtain the cookies you need:
+Open Developer Tools, go to the console and paste the following JavaScript to obtain the cookies you need:
 
 ```js {class="line-numbers linkable-line-numbers" data-line=""}
 function generateCookieSetterScript() {
@@ -821,6 +822,8 @@ Your dashboard should now load your data.
 
 ## Organizing devices for third-party usage
 
+The following example shows how you can use {{< glossary_tooltip term_id="organization" text="organizations" >}} and {{< glossary_tooltip term_id="location" text="locations" >}} to provide users access to the right groups of machines.
+
 Imagine you create an air quality monitoring company called Pollution Monitoring Made Simple.
 Anyone can sign up and order one of your sensing machines.
 When a new customer signs up, you assemble a new machine with a sensor, SBC, and power supply.
@@ -879,16 +882,16 @@ Before an air sensing machine leaves your factory, you'd complete the following 
 Once a customer receives your machine, they will:
 
 1. Plug it in and turn it on.
-2. `viam-agent` will start a WiFi network
+2. `viam-agent` will start a WiFi network.
 3. The customer uses another device to connect to the machine's WiFi network and the user gives the machine the password for their WiFi network.
 4. The machine can now connect to the internet and complete setup based on the fragment it knows about.
 
 ### Create the fragment for air sensing machines
 
-In this section you will create the {{< glossary_tooltip term_id="fragment" text="fragment" >}}, that is the configuration template that all other machines will use.
+In this section you will create the {{< glossary_tooltip term_id="fragment" text="fragment" >}}: the configuration template that all other machines will use.
 
 1. Navigate to the **FLEET** page and go to the [**FRAGMENTS** tab](https://app.viam.com/fragments).
-1. Click Create fragment.
+1. Click **Create fragment**.
 1. Name the fragment `air-quality-configuration`.
 1. Add the same components that you added to the development machine when you [set up one device for development](#set-up-one-device-for-development).
 
@@ -902,13 +905,13 @@ If not, you can use [fragment overwrite](/manage/fleet/reuse-configuration/#modi
 
 {{< /expand >}}
 
-1. Specify the version for the sds011 module.
+1. Specify the version for the `sds011` module.
    At the point of writing the version is `0.2.1`.
    Specifying a specific version or a specific minor or major version of a module will ensure that even if the module you use changes, your machines remain functional.
-   You can update your fragment at any point, any machines using it will update to use the new configuration.
+   You can update your fragment at any point, and any machines using it will update to use the new configuration.
 
 {{< alert title="Tip: Use the fragment on your development machine" color="tip" >}}
-To avoid differences between fragment and development machines, we recommend you remove the configured resources from the development machine and add the fragment you just created instead using the **+** button.
+To avoid differences between fragment and development machines, we recommend you remove the configured resources from the development machine, and instead use the **+** button to add the fragment you just created.
 {{< /alert >}}
 
 ### Provision your machines
@@ -917,7 +920,7 @@ To avoid differences between fragment and development machines, we recommend you
 {{% tablestep number=1 %}}
 
 For each machine, flash the operating system to the device's SD card.
-If you are using the Raspberry PI Imager, you **must customize at least the hostname** for the next steps to work.
+If you are using the Raspberry Pi Imager, you **must customize at least the hostname** for the next steps to work.
 
 Then run the following commands to download the preinstall script and make the script executable:
 
@@ -953,7 +956,7 @@ Navigate to one of the locations and create a machine.
 Select the part status dropdown to the right of your machine's name on the top of the page.
 
 Click the copy icon next to **Machine cloud credentials**.
-Paste the machine cloud credentials into a file on your harddrive called FILE>viam.json</FILE>.
+Paste the machine cloud credentials into a file on your hard drive called FILE>viam.json</FILE>.
 
 {{< alert title="Tip: Fleet management API" color="tip" >}}
 You can create locations and machines programmatically, with the [Fleet management API](/dev/reference/apis/fleet/).
@@ -973,9 +976,11 @@ Follow the instructions and provide the <FILE>viam-defaults.json</FILE> file and
 {{% /tablestep %}}
 {{< /table >}}
 
-That's it! Your device is now provisioned and ready for your end user!
+That's it!
+Your device is now provisioned and ready for your end user!
 
-Having trouble? See [Provisioning](/manage/fleet/provision/setup/) for more information and troubleshooting.
+Having trouble?
+See [Provisioning](/manage/fleet/provision/setup/) for more information and troubleshooting.
 
 <div id="emailform"></div>
 
